@@ -1,7 +1,7 @@
 
-public class App {
+public class App_nigth {
     public static void main(String[] args) throws Exception {
-        Frame_ frame = new Frame_();
+        Frame_nigth frame = new Frame_nigth();
         frame.setVisible(true);
     }
 }
