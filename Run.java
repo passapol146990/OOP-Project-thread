@@ -14,6 +14,7 @@ class RunThread extends Thread {
     }
     public void run() {
         ((Page) obj1).randomPosition();
-        try{Thread.sleep(500);}catch(InterruptedException e){};
+        ((Page) obj1).chkCollision();
+        try{Thread.sleep(100);}catch(InterruptedException e){};
     }
 }
