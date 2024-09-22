@@ -13,8 +13,10 @@ class RunThread extends Thread {
         this.obj1 = object;
     }
     public void run() {
-        ((Page) obj1).randomPosition();
-        ((Page) obj1).chkCollision();
-        try{Thread.sleep(100);}catch(InterruptedException e){};
+        while (true) {
+            ((Page) obj1).randomPosition();
+            ((Page) obj1).chkCollision();
+            try{Thread.sleep(100);}catch(InterruptedException e){};
+        }
     }
 }
