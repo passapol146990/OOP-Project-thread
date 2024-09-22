@@ -1,3 +1,8 @@
+How to Run
+1.open cmd it path.
+2.use command "java Run.java {Number}"
+    - Example --> "java Run.java 10"
+
 Run.java 
 - เอาไว้รวม components เข้าด้วยกันเพื่อทำงาน
 - ระบบ Thread อยู่ในไฟล์นี้ class ข้างล่าง

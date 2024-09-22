@@ -1,59 +1,76 @@
+import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Toolkit;
+import java.util.Random;
 
 import javax.swing.JPanel;
 
-public class Page extends JPanel{
-    // PagePlayGame(){
-    //     setSize(1280,720);
+class Page extends JPanel{
+    private DataEmpty data;
+    Page(){
+        setBackground(new Color(0,0,0));
+    }
+    void setDataEmpty(DataEmpty data){
+        this.data = data;
+    }
+    // private int count = 1;
+    // private int [] move_x = new int[count];
+    // private int [] move_y = new int[count];
+    // private int [] operationX = new int[count];
+    // private int [] operationY = new int[count];
+    // private int [] speedMove = new int[count];
+    // void createEmpty(){
+        // for(int i = 0; i < count; i++){
+
+        // }
+        // repaint();
+        // for(int i = 0; i < count; i++){
+        //     if(this.move_x[i]==0&&this.move_y[i]==0){
+        //         int x = (int)(Math.random()*getWidth()-30);
+        //         int y = (int)(Math.random()*getHeight()-30);
+        //         this.move_x[i] = x;
+        //         this.move_y[i] = y;
+        //         this.operationX[i] = new Random().nextInt(-1, 1);
+        //         this.operationY[i] = new Random().nextInt(-1, 1);
+        //         this.speedMove[i] = new Random().nextInt(100,1000);
+        //     }else{
+        //         this.move_x[i] = this.move_x[i]+this.operationX[i];
+        //         this.move_y[i] = this.move_y[i]+this.operationY[i];
+        //         if(this.move_x[i]>=getWidth()-30){
+        //             this.operationX[i] = -1;
+        //         }else if(this.move_x[i]<=0){
+        //             this.operationX[i] = 1;
+        //         }
+        //         if(this.move_y[i]>=getHeight()-30){
+        //             this.operationY[i] = -1;
+        //         }else if(this.move_y[i]<=0){
+        //             this.operationY[i] = +1;
+        //         }
+        //     }
+        //     repaint();
+        // }
     // }
-    private int count = 2;
-    private int [] move_x = new int[count];
-    private int [] move_y = new int[count];
-    private int [] move_status = new int[count];
-    // status 0 ไปด้านซ้าย
-    // status 1 ไปด้านขวา
-    // status 2 ไปด้านบน
-    // status 3 ไปด้านล่าง
-    void setPosition(int id,int x, int y){
-        this.move_x[id] = x;
-        // this.move_y[id] = y;
+    void setPositionEmpty(int x, int y){
+        // for(this.data.getCountEmpty()){
+
+        // }
     }
-    void randomPosition(){
-        for(int i = 0; i < count; i++){
-            if(this.move_x[i]==0&&this.move_y[i]==0){
-                int x = (int)(Math.random()*1000);
-                int y = (int)(Math.random()*700);
-                this.move_x[i] = x;
-                this.move_y[i] = y;
-            }else{
-                if(this.move_x[i]==1230){
-                    move_status[i] = 0;
-                }else if(this.move_x[i]==10){
-                    move_status[i] = 1;
-                }
-                // 
-                if(this.move_y[i]==710){
-                    move_status[i] = 3;
-                }else if(this.move_y[i]==10){
-                    move_status[i] = 0;
-                }
-                // 
-                if(move_status[i]==0){
-                    this.move_x[i] = this.move_x[i] - 1;
-                }else{
-                    this.move_x[i] = this.move_x[i] + 1;
-                }
-            }
-            repaint();
-        }
-    }
-    @Override
     public void paint(Graphics g) {
         super.paint(g);
-        randomPosition();
-        for(int i = 0; i < count; i++){
-            g.drawImage(Toolkit.getDefaultToolkit().getImage("./images/1.png"), this.move_x[i], this.move_y[i],50,50,this);
-        }
+        int x = new Random().nextInt(0,getWidth());
+        int y = new Random().nextInt(0,getHeight());
+        // setPositionEmpty()
+        // g.drawImage(Toolkit.getDefaultToolkit().getImage("./images/1.png"), x, y,50,50,this);
+        // g.setColor(new Color(0,255,0));
+        // g.drawString("X:"+x+"Y :"+y,x, y-5);
+        // g.drawRect(x,y,50, 50);
+        // for(int i = 0; i < count; i++){
+        //     g.drawImage(Toolkit.getDefaultToolkit().getImage("./images/1.png"), this.move_x[i], this.move_y[i],50,50,this);
+        //     g.setColor(new Color(0,255,0));
+        //     int x = this.move_x[i];
+        //     int y = this.move_y[i];
+        //     g.drawString("X:"+x+"Y :"+y,x, y-5);
+        //     g.drawRect(x,y,50, 50);
+        // }
     }
 }
