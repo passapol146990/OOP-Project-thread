@@ -1,4 +1,5 @@
 class DataEmpty {
+    
     private boolean isSetUp=false;
     private int count;
     private int [] position_x;
@@ -6,7 +7,9 @@ class DataEmpty {
     private int width;
     private int height;
     DataEmpty(){}
-    void check(){}
+    void check(int index){
+        
+    }
     void setCountEmpty(int count){
         this.count = count;
         this.position_x = new int[count];
@@ -19,6 +22,8 @@ class DataEmpty {
     void setIsSetUp(boolean isSetUp){this.isSetUp=isSetUp;};
     
     boolean getIsSetUp(){return this.isSetUp;}
+    int getWidth(){return this.width;}
+    int getHeight(){return this.height;}
     int getCountEmpty(){return this.count;}
     int getPositionXEmpty(int index){return this.position_x[index];}
     int getPositionYEmpty(int index){return this.position_y[index];}

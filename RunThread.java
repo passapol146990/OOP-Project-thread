@@ -7,7 +7,6 @@ class RunThread extends Thread {
     }
     public void run() {
         while (true) {
-            System.out.println(this.empty.getSpeed());
             this.empty.runEmpty();
             try{Thread.sleep(this.empty.getSpeed());}catch(InterruptedException e){};
             this.page.repaint();
