@@ -4,7 +4,7 @@ import java.awt.Graphics;
 import java.awt.Image;
 
 public class Container_nigth extends JPanel{
-    private Setting_nigth setting;
+    private Setting_nigth setting ;
     private Data_nigth data = new Data_nigth();
     private int Count_Meteor;
     Container_nigth(Setting_nigth setting){

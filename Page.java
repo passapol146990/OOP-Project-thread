@@ -1,27 +1,29 @@
 import java.awt.Color;
 import java.awt.Graphics;
+import java.awt.Toolkit;
 import java.util.Random;
 
 import javax.swing.JPanel;
 
 class Page extends JPanel{
     private DataEmpty data;
-    Page(){
-        setBackground(new Color(0,0,0));
-    }
-    void setDataEmpty(DataEmpty data){
+    private Seting seting;
+    Page(Seting seting, DataEmpty data){
         this.data = data;
+        this.seting = seting;
+        setSize(this.seting.getWidth(), this.seting.getHeight());
+        setBackground(new Color(0,0,0));
+        this.data.setWidth(getWidth());
+        this.data.setWidth(getHeight());
+        for(int index=0; index<this.data.getCountEmpty();index++){
+            this.data.setPositionX(index, new Random().nextInt(0,getWidth()));
+            this.data.setPositionY(index, new Random().nextInt(0,getHeight()));
+            Empty empty = new Empty(index,this.data);
+            RunThread runThread = new RunThread(empty,this);
+            runThread.start();
+        }
     }
-    // private int count = 1;
-    // private int [] move_x = new int[count];
-    // private int [] move_y = new int[count];
-    // private int [] operationX = new int[count];
-    // private int [] operationY = new int[count];
-    // private int [] speedMove = new int[count];
     // void createEmpty(){
-        // for(int i = 0; i < count; i++){
-              
-        // }
         // repaint();
         // for(int i = 0; i < count; i++){
         //     if(this.move_x[i]==0&&this.move_y[i]==0){
@@ -49,27 +51,28 @@ class Page extends JPanel{
         //     repaint();
         // }
     // }
-    void setPositionEmpty(int x, int y){
-        // for(this.data.getCountEmpty()){
-
+    void setPositionEmpty(){
+        // for(int i=0;i<this.data.getCountEmpty();i++){
+            // if(!this.data.getIsSetUp()){
+                // this.data.setPositionX(i, new Random().nextInt(0,getWidth()));
+                // this.data.setPositionY(i, new Random().nextInt(0,getHeight()));
+            // }else{
+            //     int x = this.data.getPositionXEmpty(i);
+            //     int y = this.data.getPositionYEmpty(i);
+            // }
         // }
+        // this.data.setIsSetUp(true);
+        // repaint();
     }
     public void paint(Graphics g) {
         super.paint(g);
-        int x = new Random().nextInt(0,getWidth());
-        int y = new Random().nextInt(0,getHeight());
-        // setPositionEmpty()
-        // g.drawImage(Toolkit.getDefaultToolkit().getImage("./images/1.png"), x, y,50,50,this);
-        // g.setColor(new Color(0,255,0));
-        // g.drawString("X:"+x+"Y :"+y,x, y-5);
-        // g.drawRect(x,y,50, 50);
-        // for(int i = 0; i < count; i++){
-        //     g.drawImage(Toolkit.getDefaultToolkit().getImage("./images/1.png"), this.move_x[i], this.move_y[i],50,50,this);
-        //     g.setColor(new Color(0,255,0));
-        //     int x = this.move_x[i];
-        //     int y = this.move_y[i];
-        //     g.drawString("X:"+x+"Y :"+y,x, y-5);
-        //     g.drawRect(x,y,50, 50);
-        // }
+        for(int i=0;i<this.data.getCountEmpty();i++){
+            int x = this.data.getPositionXEmpty(i);
+            int y = this.data.getPositionYEmpty(i);
+            g.drawImage(Toolkit.getDefaultToolkit().getImage("./images/1.png"), x, y,50,50,this);
+            g.setColor(new Color(0,255,0));
+            g.drawString("X:"+x+"Y :"+y,x, y-5);
+            g.drawRect(x,y,50, 50);
+        }
     }
 }
