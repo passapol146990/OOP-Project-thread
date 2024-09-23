@@ -5,8 +5,9 @@ class DataEmpty {
     private int [] position_y;
     private int width;
     private int height;
-    DataEmpty(){}
-    void check(){}
+    private Empty empty;
+    DataEmpty(){
+    }
     void setCountEmpty(int count){
         this.count = count;
         this.position_x = new int[count];

@@ -23,47 +23,7 @@ class Page extends JPanel{
             runThread.start();
         }
     }
-    // void createEmpty(){
-        // repaint();
-        // for(int i = 0; i < count; i++){
-        //     if(this.move_x[i]==0&&this.move_y[i]==0){
-        //         int x = (int)(Math.random()*getWidth()-30);
-        //         int y = (int)(Math.random()*getHeight()-30);
-        //         this.move_x[i] = x;
-        //         this.move_y[i] = y;
-        //         this.operationX[i] = new Random().nextInt(-1, 1);
-        //         this.operationY[i] = new Random().nextInt(-1, 1);
-        //         this.speedMove[i] = new Random().nextInt(100,1000);
-        //     }else{
-        //         this.move_x[i] = this.move_x[i]+this.operationX[i];
-        //         this.move_y[i] = this.move_y[i]+this.operationY[i];
-        //         if(this.move_x[i]>=getWidth()-30){
-        //             this.operationX[i] = -1;
-        //         }else if(this.move_x[i]<=0){
-        //             this.operationX[i] = 1;
-        //         }
-        //         if(this.move_y[i]>=getHeight()-30){
-        //             this.operationY[i] = -1;
-        //         }else if(this.move_y[i]<=0){
-        //             this.operationY[i] = +1;
-        //         }
-        //     }
-        //     repaint();
-        // }
-    // }
-    void setPositionEmpty(){
-        // for(int i=0;i<this.data.getCountEmpty();i++){
-            // if(!this.data.getIsSetUp()){
-                // this.data.setPositionX(i, new Random().nextInt(0,getWidth()));
-                // this.data.setPositionY(i, new Random().nextInt(0,getHeight()));
-            // }else{
-            //     int x = this.data.getPositionXEmpty(i);
-            //     int y = this.data.getPositionYEmpty(i);
-            // }
-        // }
-        // this.data.setIsSetUp(true);
-        // repaint();
-    }
+    
     public void paint(Graphics g) {
         super.paint(g);
         for(int i=0;i<this.data.getCountEmpty();i++){
