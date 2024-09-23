@@ -1,5 +1,5 @@
 
-public class Setting {
+public class Setting_nigth {
     private int Count_Meteor = 7 ;
     private boolean hitbox = true;
     private int Speed_f = 3;

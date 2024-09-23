@@ -3,11 +3,11 @@ import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Image;
 
-public class Container extends JPanel{
-    private Setting setting ;
-    private Data data = new Data();
+public class Container_nigth extends JPanel{
+    private Setting_nigth setting ;
+    private Data_nigth data = new Data_nigth();
     private int Count_Meteor;
-    Container(Setting setting){
+    Container_nigth(Setting_nigth setting){
         this.setting = setting;
         this.Count_Meteor = setting.getCount_Meteor();
         setBackground(Color.BLACK);
@@ -15,7 +15,7 @@ public class Container extends JPanel{
         setLocation(0,0);
         for (int i = 0; i < Count_Meteor; i++) {
             if (data.getStatus_()[i]) {
-                RandomPosition tH = new RandomPosition(data, i, this);
+                RandomPosition_nigth tH = new RandomPosition_nigth(data, i, this);
                 tH.start();
             }
         }

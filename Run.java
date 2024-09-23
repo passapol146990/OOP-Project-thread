@@ -1,16 +1,12 @@
 class Run {
     public static void main(String[] args){
-        try{
-            // int count = Integer.parseInt(args[0]);
-            int count = Integer.parseInt("5");
-            DataEmpty data = new DataEmpty();
-            RunThread runThread = new RunThread();
-            data.setCountEmpty(count);
+        int count = 10;
+        Seting seting = new Seting(720,720);
+        DataEmpty data = new DataEmpty();
+        data.setCountEmpty(count);
 
-            App app = new App();
-            Page page = new Page();
-            page.setDataEmpty(data);
-            app.add(page);
-        }catch(Exception e){System.out.println("Plase Input Number.");}
+        App app = new App(seting);
+        Page page = new Page(seting,data);
+        app.add(page);
     }    
 }
