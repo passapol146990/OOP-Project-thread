@@ -1,11 +1,11 @@
 import javax.swing.JPanel;
 
-public class RandomPosition extends Thread{
-    private Data data;
+public class RandomPosition_nigth extends Thread{
+    private Data_nigth data;
     private int position;
     private JPanel panel;
-    private Setting setting = new Setting();
-    RandomPosition(Data data,int position,JPanel panel){
+    private Setting_nigth setting = new Setting_nigth();
+    RandomPosition_nigth(Data_nigth data,int position,JPanel panel){
         this.data = data;
         this.position = position;
         this.panel = panel;

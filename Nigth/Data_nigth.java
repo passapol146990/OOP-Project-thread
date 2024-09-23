@@ -3,15 +3,15 @@ import java.awt.Toolkit;
 import java.io.File;
 import java.util.Random;
 
-public class Data {
-    private Setting setting = new Setting();
+public class Data_nigth {
+    private Setting_nigth setting = new Setting_nigth();
     private int Count_Meteor = setting.getCount_Meteor();
     private int[][] position_M= new int[Count_Meteor][2];
     private Image[] image = new Image[Count_Meteor];
     private Boolean[] status_ = new Boolean[Count_Meteor];
     private int[][] mode = new int[Count_Meteor][2];
     private int[] Speed_ = new int[Count_Meteor];
-    Data(){
+    Data_nigth(){
         setposition();
         setSpeedPX_();
         setSpeed();
