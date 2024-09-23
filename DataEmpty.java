@@ -1,7 +1,10 @@
 class DataEmpty {
     private int count=0;
-    private int [] position_x = new int[5];
-    DataEmpty(){}
+    private int [] position_x = new int[count];
+    private int [] position_y = new int[count];
+    DataEmpty(){
+        //setCountEmpty(count);
+    }
     void setCountEmpty(int count){
         this.count = count;
     }

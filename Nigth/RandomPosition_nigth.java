@@ -29,7 +29,6 @@ public class RandomPosition_nigth extends Thread{
     }
     public void run(){
         while (true) {
-
             int position_M[][] = data.getPosition_M();
             int x = position_M[position][0];
             int y = position_M[position][1];

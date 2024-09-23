@@ -1,6 +1,5 @@
 import java.awt.Color;
 import java.awt.Graphics;
-import java.awt.Toolkit;
 import java.util.Random;
 
 import javax.swing.JPanel;
@@ -21,7 +20,7 @@ class Page extends JPanel{
     // private int [] speedMove = new int[count];
     // void createEmpty(){
         // for(int i = 0; i < count; i++){
-
+              
         // }
         // repaint();
         // for(int i = 0; i < count; i++){
