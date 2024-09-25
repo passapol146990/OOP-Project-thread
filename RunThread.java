@@ -1,14 +1,16 @@
 class RunThread extends Thread {
+    private DataEmpty data;
+    private int index;
     private Page page;
-    private Empty empty;
-    RunThread(Empty empty, Page page){
-        this.empty = empty;
+    RunThread(DataEmpty data,int index,Page page){
+        this.data = data;
+        this.index = index;
         this.page = page;
     }
     public void run() {
         while (true) {
-            this.empty.runEmpty();
-            try{Thread.sleep(this.empty.getSpeed());}catch(InterruptedException e){};
+            this.data.runSystem(this.index);
+            try{Thread.sleep(this.data.getSpeedEmpty(this.index));}catch(InterruptedException e){};
             this.page.repaint();
         }
     }

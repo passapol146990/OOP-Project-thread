@@ -11,15 +11,16 @@ class Page extends JPanel{
     Page(Seting seting, DataEmpty data){
         this.data = data;
         this.seting = seting;
-        setSize(this.seting.getWidth(), this.seting.getHeight());
         setBackground(new Color(0,0,0));
-        this.data.setWidth(getWidth());
-        this.data.setheight(getHeight());
         for(int index=0; index<this.data.getCountEmpty();index++){
-            this.data.setPositionX(index, new Random().nextInt(0,getWidth()));
-            this.data.setPositionY(index, new Random().nextInt(0,getHeight()));
-            Empty empty = new Empty(index,this.data);
-            RunThread runThread = new RunThread(empty,this);
+            // this.data.setPositionX(index, new Random().nextInt(0,this.seting.getWidth()));
+            this.data.setPositionX(index,100);
+            this.data.setPositionY(index, new Random().nextInt(0,this.seting.getHeight()-50));
+            // this.data.setPositionY(index, 100);
+            this.data.setModeX(index,new Random().nextInt(-3,3));
+            this.data.setModeY(index,new Random().nextInt(-3,3));
+            this.data.setSpeed(index,new Random().nextInt(10,20));
+            RunThread runThread = new RunThread(this.data, index,this);
             runThread.start();
         }
     }
@@ -29,9 +30,9 @@ class Page extends JPanel{
             int x = this.data.getPositionXEmpty(i);
             int y = this.data.getPositionYEmpty(i);
             g.drawImage(Toolkit.getDefaultToolkit().getImage("./images/1.png"), x, y,50,50,this);
-            g.setColor(new Color(0,255,0));
-            g.drawString("X:"+x+"Y :"+y,x, y-5);
-            g.drawRect(x,y,50, 50);
+            // g.setColor(new Color(0,255,0));
+            // g.drawString("X:"+x+"Y :"+y,x, y-5);
+            // g.drawRect(x,y,50, 50);
         }
     }
 }
