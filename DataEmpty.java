@@ -11,7 +11,7 @@ class DataEmpty {
     private int [] modeY;
     private int [] speed;
     private boolean [] disCheck;
-    int hidbox = 50;
+    int hidbox = 40;
     DataEmpty(Seting seting){
         this.seting = seting;
     }
@@ -52,13 +52,13 @@ class DataEmpty {
                     Rectangle otherAsteroid = new Rectangle(this.position_x[i], this.position_y[i], this.hidbox+20, this.hidbox+20);
                     if (thisAsteroid.intersects(otherAsteroid)) {
                         this.position_x[index] += (this.modeX[index]>0)?-2:2;
-                        this.position_x[i] += (this.modeX[i]>0)?-1:1;   
+                        this.position_x[i] += (this.modeX[i]>0)?-3:3;   
                         this.position_y[index] += (this.modeY[index]>0)?-2:2;
-                        this.position_y[i] += (this.modeY[i]>0)?-1:1;
-                        this.modeX[index] = (this.modeX[index]>0)?getRandomInt(-5,-1):getRandomInt(1,5);
-                        this.modeY[index] = (this.modeY[index]>0)?getRandomInt(-5,-1):getRandomInt(1,5);  
-                        this.modeX[i] = (this.modeX[i]>0)?getRandomInt(-5,-1):getRandomInt(1,5); 
-                        this.modeY[i] = (this.modeY[i]>0)?getRandomInt(-5,-1):getRandomInt(1,5);   
+                        this.position_y[i] += (this.modeY[i]>0)?-3:3;
+                        this.modeX[index] = (this.modeX[index]>0)?getRandomInt(-5, -1):getRandomInt(1, 5);
+                        this.modeX[i] = (this.modeX[i]>0)?getRandomInt(-5, -1):getRandomInt(1, 5); 
+                        this.modeY[index] = (this.modeY[index]>0)?getRandomInt(-5, -1):getRandomInt(1, 5);  
+                        this.modeY[i] = (this.modeY[i]>0)?getRandomInt(-5, -1):getRandomInt(1, 5);  
                         this.disCheck[index] = true;    
                         this.disCheck[i]    = true; 
                     }
