@@ -11,20 +11,15 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 class Page extends JPanel{
-    private JPanel jPanel;
     private DataEmpty data;
     private Seting seting;
-    // private JLabel jLabel = new JLabel();
     Page(Seting seting, DataEmpty data){
-        this.jPanel = jPanel;
         this.data = data;
         this.seting = seting;
         setBackground(new Color(0,0,0));
         for(int index=0; index<this.data.getCountEmpty();index++){
-            // this.data.setPositionX(index, new Random().nextInt(0,this.seting.getWidth()));
-            this.data.setPositionX(index,100);
+            this.data.setPositionX(index, new Random().nextInt(0,this.seting.getWidth()));
             this.data.setPositionY(index, new Random().nextInt(0,this.seting.getHeight()-50));
-            // this.data.setPositionY(index, 100);
             this.data.setModeX(index,new Random().nextInt(-3,3));
             this.data.setModeY(index,new Random().nextInt(-3,3));
             this.data.setSpeed(index,new Random().nextInt(10,20));
@@ -35,10 +30,7 @@ class Page extends JPanel{
         addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
-                RunBomb runBomb = new RunBomb(this.jLabel);
-                runBomb.start();
-                // showGif(e.getX(), e.getY());
-                add(jLabel);
+                setBomb(e.getX(),e.getY());
             }
         });
     }
@@ -55,18 +47,17 @@ class Page extends JPanel{
             // g.drawRect(x,y,50, 50);
         }
     }
-    public void showGif(int x, int y){
+    void setBomb(int x, int y){
         try{
             ImageIcon image = new ImageIcon("./images/bomb.gif");
+            JLabel jLabel = new JLabel();
             jLabel.setIcon(image);
-            jLabel.setBounds(x, y, image.getIconWidth(),image.getIconHeight());
+            jLabel.setBounds(x-image.getIconWidth()/2, y-image.getIconHeight()/2, image.getIconWidth(),image.getIconHeight());
             jLabel.setVisible(true);
-        }catch (Exception e){
-
-        }
+            add(jLabel);
+            RunBomb runBomb = new RunBomb(jLabel);
+            runBomb.start();
+        }catch (Exception e){}
         
-    }
-    public void stopBomb(){
-        jLabel.setVisible(false);
     }
 }
