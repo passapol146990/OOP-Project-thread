@@ -4,7 +4,7 @@ class Run {
         Seting seting = new Seting(720,720);
         DataEmpty data = new DataEmpty();
         data.setCountEmpty(count);
-
+        d
         App app = new App(seting);
         Page page = new Page(seting,data);
         app.add(page);
