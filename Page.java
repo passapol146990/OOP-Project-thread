@@ -13,7 +13,7 @@ class Page extends JPanel{
         this.seting = seting;
         setBackground(new Color(0,0,0));
         for(int index=0; index<this.data.getCountEmpty();index++){
-            // this.data.setPositionX(index, new Random().nextInt(0,this.seting.getWidth()));
+            //this.data.setPositionX(index, new Random().nextInt(0,this.seting.getWidth()));
             this.data.setPositionX(index,100);
             this.data.setPositionY(index, new Random().nextInt(0,this.seting.getHeight()-50));
             // this.data.setPositionY(index, 100);
