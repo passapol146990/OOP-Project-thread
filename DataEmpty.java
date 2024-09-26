@@ -10,6 +10,7 @@ class DataEmpty {
     private int [] modeX;
     private int [] modeY;
     private int [] speed;
+    private int [] hp;
     private boolean [] disCheck;
     int hidbox = 50;
     DataEmpty(Seting seting){
@@ -20,6 +21,7 @@ class DataEmpty {
         this.EmptyLive = count;
         this.position_x = new int[count];
         this.position_y = new int[count];
+        this.hp =  new int[count];//ดึงเลือดไปเช็ค
         this.modeX = new int[count];
         this.modeY = new int[count];
         this.speed = new int[count];
@@ -72,7 +74,7 @@ class DataEmpty {
     void setModeY(int index,int mode){this.modeY[index] = mode;}
     void setIsSetUp(boolean isSetUp){this.isSetUp=isSetUp;};
     void setSpeed(int index,int speed){this.speed[index] = speed;}
-    
+    void setHp(int index, int hp){this.hp[index] = hp;}
     Seting getSeting(){return this.seting;}
     boolean getIsSetUp(){return this.isSetUp;}
     int getEmptyLive(){return this.EmptyLive;}
@@ -80,4 +82,5 @@ class DataEmpty {
     int getSpeedEmpty(int index){return this.speed[index];}
     int getPositionXEmpty(int index){return this.position_x[index];}
     int getPositionYEmpty(int index){return this.position_y[index];}
+    int getHp(int index){return this.hp[index];}
 }
