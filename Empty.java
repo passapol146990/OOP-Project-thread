@@ -25,6 +25,8 @@ class Empty {
         }
         
     }
+    
+    
     void runEmpty() {
         this.data.setPositionX(this.index, this.data.getPositionXEmpty(this.index)+this.operationX);
         this.data.setPositionY(this.index, this.data.getPositionYEmpty(this.index)+this.operationY);

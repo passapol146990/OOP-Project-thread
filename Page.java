@@ -1,20 +1,36 @@
 import java.awt.Color;
+import java.awt.FlowLayout;
 import java.awt.Graphics;
 import java.awt.Toolkit;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseAdapter;
 import java.util.Random;
-
+import javax.swing.JLabel;
+import javax.imageio.ImageIO;
 import javax.swing.JPanel;
+import javax.swing.ImageIcon;
+import java.io.File;
+import java.awt.image.BufferedImage;
 
 class Page extends JPanel{
     private DataEmpty data;
     private Seting seting;
+    private JLabel jLabel = new JLabel();
     Page(Seting seting, DataEmpty data){
+        // jLabel.setVisible(false);//ซ่อน gif
         this.data = data;
         this.seting = seting;
         setSize(this.seting.getWidth(), this.seting.getHeight());
         setBackground(new Color(0,0,0));
         this.data.setWidth(getWidth());
         this.data.setWidth(getHeight());
+        this.addMouseListener(new MouseAdapter() { // เอาไว้โชว์ระเบิดเวลาคลิก
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                showGif(e.getX(),e.getY());
+                add(jLabel);
+            }
+        });
         for(int index=0; index<this.data.getCountEmpty();index++){
             this.data.setPositionX(index, new Random().nextInt(0,getWidth()));
             this.data.setPositionY(index, new Random().nextInt(0,getHeight()));
@@ -22,7 +38,13 @@ class Page extends JPanel{
             RunThread runThread = new RunThread(empty,this);
             runThread.start();
         }
+        
+        
     }
+      
+       
+        
+    
     // void createEmpty(){
         // repaint();
         // for(int i = 0; i < count; i++){
@@ -75,4 +97,18 @@ class Page extends JPanel{
             g.drawRect(x,y,50, 50);
         }
     }
+    public void showGif(int x, int y){
+        try{
+            ImageIcon image = new ImageIcon("C:\\gitclone\\OOP-Project-thread\\images/bomb.gif");
+            jLabel.setIcon(image);
+            jLabel.setBounds(x, y,image.getIconWidth(), image.getIconHeight());
+            jLabel.setVisible(true);
+
+            
+        }catch (Exception e){
+            e.printStackTrace();//แสดงผิด
+        }
+    }
+    
 }
+    
