@@ -2,6 +2,7 @@ import java.awt.Rectangle;
 import java.util.Random;
 import java.util.ArrayList;
 import java.util.Iterator;
+
 class DataEmpty {
     private Seting seting;
     private int count;
@@ -14,7 +15,7 @@ class DataEmpty {
     private int [] hp;
     private int [] imageNumber;
     private boolean [] disCheck;
-    private int hidbox = 30;
+    private int hidbox = 40;
     DataEmpty(Seting seting){
         this.seting = seting;
     }
@@ -54,16 +55,30 @@ class DataEmpty {
                     Rectangle thisAsteroid = new Rectangle(this.position_x[index], this.position_y[index], this.hidbox, this.hidbox);
                     Rectangle otherAsteroid = new Rectangle(this.position_x[i], this.position_y[i], this.hidbox, this.hidbox);
                     if (thisAsteroid.intersects(otherAsteroid)) {
-                        this.modeX[index] = (this.modeX[index]>0)?getRandomInt(-2,-1):getRandomInt(1,5);  
-                        this.modeY[index] = (this.modeY[index]>0)?getRandomInt(-2,-1):getRandomInt(1,5);  
-                        this.modeX[i] = (this.modeX[i]>0)?getRandomInt(-2,-1):getRandomInt(1,5);  
-                        this.modeY[i] = (this.modeY[i]>0)?getRandomInt(-2,-1):getRandomInt(1,5);  
-                        RunCheckColision checkColision = new RunCheckColision(this,this.disCheck, index);
-                        checkColision.start(); 
+                        int dx = this.position_x[index] - this.position_x[i];
+                        int dy = this.position_y[index] - this.position_y[i];
+                        
+                        if (dx == 0) dx = 1; 
+                        if (dy == 0) dy = 1;
+
+                        this.position_x[index] += 5 * (dx / Math.abs(dx)); // แยกออกตามทิศทาง X
+                        this.position_y[index] += 5 * (dy / Math.abs(dy)); // แยกออกตามทิศทาง Y
+
+                        this.position_x[i] -= 5 * (dx / Math.abs(dx));
+                        this.position_y[i] -= 5 * (dy / Math.abs(dy));
+
+                        this.modeX[index] = (this.modeX[index]>0)?getRandomInt(-5,-1):getRandomInt(1,5);// บวก ช้าย ลบ ขวา
+                        this.modeX[i] = (this.modeX[i]>0)?getRandomInt(-5,-1):getRandomInt(1,5); 
+                        this.modeY[index] = (this.modeY[index]>0)?getRandomInt(-5,-1):getRandomInt(1,5);// บวก บน ลบ ล่าง
+                        this.modeY[i] = (this.modeY[i]>0)?getRandomInt(-5,-1):getRandomInt(1,5);  
+                        this.disCheck[index] = true;    
+                        this.disCheck[i]    = true; 
                     }
                 }
             }
-        }
+        this.disCheck[index] = false; 
+        this.disCheck[i]    = false; 
+    }
         this.position_x[index] += this.modeX[index];
         this.position_y[index] += this.modeY[index];
     }
