@@ -12,8 +12,9 @@ class DataEmpty {
     private int [] modeY;
     private int [] speed;
     private int [] hp;
+    private int [] imageNumber;
     private boolean [] disCheck;
-    private int hidbox = 50;
+    private int hidbox = 30;
     DataEmpty(Seting seting){
         this.seting = seting;
     }
@@ -29,22 +30,23 @@ class DataEmpty {
         this.modeY = new int[count];
         this.speed = new int[count];
         this.disCheck = new boolean[count];
+        this.imageNumber = new int[count];
     }
     int getRandomInt(int min, int max){
         return new Random().nextInt(min, max);
     }
     void runSystem(int index){
         if(this.position_x[index]<=0){
-            this.modeX[index] = getRandomInt(3,5);
+            this.modeX[index] = getRandomInt(1,2);
         }
         if(this.position_x[index]>=this.seting.getWidth()){
-            this.modeX[index] = getRandomInt(-5,-3);
+            this.modeX[index] = getRandomInt(-2,-1);
         }
         if(this.position_y[index]<=0){
-            this.modeY[index] = getRandomInt(3,5);
+            this.modeY[index] = getRandomInt(1,2);
         }
         if(this.position_y[index]>=this.seting.getHeight()){
-            this.modeY[index] = getRandomInt(-5,-3);
+            this.modeY[index] = getRandomInt(-2,-1);
         }
         for (int i : this.EmptyLive) {
             if (i != index) {
@@ -52,10 +54,10 @@ class DataEmpty {
                     Rectangle thisAsteroid = new Rectangle(this.position_x[index], this.position_y[index], this.hidbox, this.hidbox);
                     Rectangle otherAsteroid = new Rectangle(this.position_x[i], this.position_y[i], this.hidbox, this.hidbox);
                     if (thisAsteroid.intersects(otherAsteroid)) {
-                        this.modeX[index] = (this.modeX[index]>0)?getRandomInt(-5,-1):getRandomInt(1,5);  
-                        this.modeY[index] = (this.modeY[index]>0)?getRandomInt(-5,-1):getRandomInt(1,5);  
-                        this.modeX[i] = (this.modeX[i]>0)?getRandomInt(-5,-1):getRandomInt(1,5);  
-                        this.modeY[i] = (this.modeY[i]>0)?getRandomInt(-5,-1):getRandomInt(1,5);  
+                        this.modeX[index] = (this.modeX[index]>0)?getRandomInt(-2,-1):getRandomInt(1,5);  
+                        this.modeY[index] = (this.modeY[index]>0)?getRandomInt(-2,-1):getRandomInt(1,5);  
+                        this.modeX[i] = (this.modeX[i]>0)?getRandomInt(-2,-1):getRandomInt(1,5);  
+                        this.modeY[i] = (this.modeY[i]>0)?getRandomInt(-2,-1):getRandomInt(1,5);  
                         RunCheckColision checkColision = new RunCheckColision(this,this.disCheck, index);
                         checkColision.start(); 
                     }
@@ -80,6 +82,7 @@ class DataEmpty {
         }catch(Exception e){}
 
     }
+    void setImageNumber(int index,int number){this.imageNumber[index] = number;}
     void setPositionX(int index,int position){this.position_x[index] = position;}
     void setPositionY(int index,int position){this.position_y[index] = position;}
     void setModeX(int index,int mode){this.modeX[index] = mode;}
@@ -94,4 +97,5 @@ class DataEmpty {
     int getPositionXEmpty(int index){return this.position_x[index];}
     int getPositionYEmpty(int index){return this.position_y[index];}
     int getHp(int index){return this.hp[index];}
+    int getImageNumber(int index){return this.imageNumber[index];}
 }

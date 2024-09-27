@@ -1,6 +1,6 @@
 class Run {
     public static void main(String[] args){
-        int count = 20;
+        int count = 100;
         Seting seting = new Seting(720,720);
         DataEmpty data = new DataEmpty(seting);
         data.setCountEmpty(count);

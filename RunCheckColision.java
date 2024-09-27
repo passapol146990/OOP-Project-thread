@@ -10,7 +10,7 @@ class RunCheckColision extends Thread{
     public void run() {
         this.disCheck[this.index] = true;
         this.data.setCheckColision(disCheck);
-        try{Thread.sleep(800);}catch(Exception e){}
+        try{Thread.sleep(100);}catch(Exception e){}
         this.disCheck[this.index] = false;
         this.data.setCheckColision(disCheck);
     }
