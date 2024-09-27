@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.Iterator;
 class DataEmpty {
     private Seting seting;
-    private boolean isSetUp=false;
     private int count;
     private ArrayList<Integer> EmptyLive = new ArrayList<Integer>();
     private int [] position_x;
@@ -37,19 +36,15 @@ class DataEmpty {
     void runSystem(int index){
         if(this.position_x[index]<=0){
             this.modeX[index] = getRandomInt(3,5);
-            this.disCheck[index] = false; 
         }
         if(this.position_x[index]>=this.seting.getWidth()){
             this.modeX[index] = getRandomInt(-5,-3);
-            this.disCheck[index] = false; 
         }
         if(this.position_y[index]<=0){
             this.modeY[index] = getRandomInt(3,5);
-            this.disCheck[index] = false; 
         }
         if(this.position_y[index]>=this.seting.getHeight()){
             this.modeY[index] = getRandomInt(-5,-3);
-            this.disCheck[index] = false; 
         }
         for (int i : this.EmptyLive) {
             if (i != index) {
@@ -61,13 +56,11 @@ class DataEmpty {
                         this.modeY[index] = (this.modeY[index]>0)?getRandomInt(-5,-1):getRandomInt(1,5);  
                         this.modeX[i] = (this.modeX[i]>0)?getRandomInt(-5,-1):getRandomInt(1,5);  
                         this.modeY[i] = (this.modeY[i]>0)?getRandomInt(-5,-1):getRandomInt(1,5);  
-                        this.disCheck[index] = true;    
-                        this.disCheck[i]    = true; 
+                        RunCheckColision checkColision = new RunCheckColision(this,this.disCheck, index);
+                        checkColision.start(); 
                     }
                 }
             }
-            this.disCheck[index] = false; 
-            this.disCheck[i]    = false; 
         }
         this.position_x[index] += this.modeX[index];
         this.position_y[index] += this.modeY[index];
@@ -91,11 +84,10 @@ class DataEmpty {
     void setPositionY(int index,int position){this.position_y[index] = position;}
     void setModeX(int index,int mode){this.modeX[index] = mode;}
     void setModeY(int index,int mode){this.modeY[index] = mode;}
-    void setIsSetUp(boolean isSetUp){this.isSetUp=isSetUp;};
     void setSpeed(int index,int speed){this.speed[index] = speed;}
     void setHp(int index, int hp){this.hp[index] = hp;}
+    void setCheckColision(boolean []check){this.disCheck = check;}
     Seting getSeting(){return this.seting;}
-    boolean getIsSetUp(){return this.isSetUp;}
     ArrayList<Integer> getEmptyLive(){return this.EmptyLive;}
     int getCountEmpty(){return this.count;}
     int getSpeedEmpty(int index){return this.speed[index];}
