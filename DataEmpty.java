@@ -1,5 +1,6 @@
 import java.awt.Rectangle;
 import java.util.Random;
+import java.util.Timer;
 class DataEmpty {
     private Seting seting;
     private boolean isSetUp=false;
@@ -11,6 +12,7 @@ class DataEmpty {
     private int [] modeY;
     private int [] speed;
     private boolean [] disCheck;
+    private int[] collisionCounter;
     int hidbox = 50;
     DataEmpty(Seting seting){
         this.seting = seting;
@@ -24,6 +26,7 @@ class DataEmpty {
         this.modeY = new int[count];
         this.speed = new int[count];
         this.disCheck = new boolean[count];
+        this.collisionCounter = new int[count];
     }
     int getRandomInt(int min, int max){
         return new Random().nextInt(min, max);
@@ -49,24 +52,43 @@ class DataEmpty {
             if (i != index) {
                 if(!this.disCheck[index]&&!this.disCheck[i]){
                     Rectangle thisAsteroid = new Rectangle(this.position_x[index], this.position_y[index], this.hidbox, this.hidbox);
-                    Rectangle otherAsteroid = new Rectangle(this.position_x[i], this.position_y[i], this.hidbox+20, this.hidbox+20);
+                    Rectangle otherAsteroid = new Rectangle(this.position_x[i], this.position_y[i], this.hidbox, this.hidbox);
+                    // int overlapX = Math.min(thisAsteroid.x + thisAsteroid.width, otherAsteroid.x + otherAsteroid.width)
+                    // - Math.max(thisAsteroid.x, otherAsteroid.x);
+                    // int overlapY = Math.min(thisAsteroid.y + thisAsteroid.height, otherAsteroid.y + otherAsteroid.height)
+                    // - Math.max(thisAsteroid.y, otherAsteroid.y);
+
+                    
                     if (thisAsteroid.intersects(otherAsteroid)) {
-                        this.position_x[index] += (this.modeX[index]>0)?-2:2;
-                        this.position_x[i] += (this.modeX[i]>0)?-1:1;   
-                        this.position_y[index] += (this.modeY[index]>0)?-2:2;
-                        this.position_y[i] += (this.modeY[i]>0)?-1:1;
-                        this.modeX[index] = (this.modeX[index]>0)?getRandomInt(-5,-1):getRandomInt(1,5);
-                        this.modeY[index] = (this.modeY[index]>0)?getRandomInt(-5,-1):getRandomInt(1,5);  
+                        int dx = this.position_x[index] - this.position_x[i];
+                        int dy = this.position_y[index] - this.position_y[i];
+                        
+                        if (dx == 0) dx = 1; 
+                        if (dy == 0) dy = 1;
+
+                        this.position_x[index] += 5 * (dx / Math.abs(dx)); // แยกออกตามทิศทาง X
+                        this.position_y[index] += 5 * (dy / Math.abs(dy)); // แยกออกตามทิศทาง Y
+
+                        this.position_x[i] -= 5 * (dx / Math.abs(dx));
+                        this.position_y[i] -= 5 * (dy / Math.abs(dy));
+
+                        this.modeX[index] = (this.modeX[index]>0)?getRandomInt(-5,-1):getRandomInt(1,5);// บวก ช้าย ลบ ขวา
                         this.modeX[i] = (this.modeX[i]>0)?getRandomInt(-5,-1):getRandomInt(1,5); 
-                        this.modeY[i] = (this.modeY[i]>0)?getRandomInt(-5,-1):getRandomInt(1,5);   
+                        this.modeY[index] = (this.modeY[index]>0)?getRandomInt(-5,-1):getRandomInt(1,5);// บวก บน ลบ ล่าง
+                        this.modeY[i] = (this.modeY[i]>0)?getRandomInt(-5,-1):getRandomInt(1,5);  
                         this.disCheck[index] = true;    
                         this.disCheck[i]    = true; 
                     }
+
+                    // if (!thisAsteroid.intersects(otherAsteroid)) {
+                    //     collisionCounter[index] = 0;
+                    //     collisionCounter[i] = 0;
+                    // } 
                 }
             }
-            this.disCheck[index] = false; 
-            this.disCheck[i]    = false; 
-        }
+        this.disCheck[index] = false; 
+        this.disCheck[i]    = false; 
+    }
         this.position_x[index] += this.modeX[index];
         this.position_y[index] += this.modeY[index];
     }
