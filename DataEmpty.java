@@ -77,11 +77,6 @@ class DataEmpty {
                         this.disCheck[index] = true;    
                         this.disCheck[i]    = true; 
                     }
-
-                    // if (!thisAsteroid.intersects(otherAsteroid)) {
-                    //     collisionCounter[index] = 0;
-                    //     collisionCounter[i] = 0;
-                    // } 
                 }
             }
         this.disCheck[index] = false; 
