@@ -67,10 +67,10 @@ class DataEmpty {
                         this.position_x[i] -= 5 * (dx / Math.abs(dx));
                         this.position_y[i] -= 5 * (dy / Math.abs(dy));
 
-                        this.modeX[index] = (this.modeX[index]>0)?getRandomInt(-5,-1):getRandomInt(1,5);// บวก ช้าย ลบ ขวา
-                        this.modeX[i] = (this.modeX[i]>0)?getRandomInt(-5,-1):getRandomInt(1,5); 
-                        this.modeY[index] = (this.modeY[index]>0)?getRandomInt(-5,-1):getRandomInt(1,5);// บวก บน ลบ ล่าง
-                        this.modeY[i] = (this.modeY[i]>0)?getRandomInt(-5,-1):getRandomInt(1,5);  
+                        this.modeX[index] = (this.modeX[index]>0)?getRandomInt(-2,-1):getRandomInt(1,5);// บวก ช้าย ลบ ขวา
+                        this.modeX[i] = (this.modeX[i]>0)?getRandomInt(-2,-1):getRandomInt(1,5); 
+                        this.modeY[index] = (this.modeY[index]>0)?getRandomInt(-2,-1):getRandomInt(1,5);// บวก บน ลบ ล่าง
+                        this.modeY[i] = (this.modeY[i]>0)?getRandomInt(-2,-1):getRandomInt(1,5);  
                         this.disCheck[index] = true;    
                         this.disCheck[i]    = true; 
                     }
