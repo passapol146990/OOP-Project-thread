@@ -3,7 +3,6 @@ import java.awt.Graphics;
 import java.awt.Toolkit;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
 import java.util.Random;
 
 import javax.swing.ImageIcon;
@@ -17,7 +16,7 @@ class Page extends JPanel{
         this.data = data;
         this.seting = seting;
         setBackground(new Color(0,0,0));
-        for(int index=0; index<this.data.getCountEmpty();index++){
+        for(int index : data.getEmptyLive()){
             this.data.setPositionX(index, new Random().nextInt(0,this.seting.getWidth()));
             this.data.setPositionY(index, new Random().nextInt(0,this.seting.getHeight()-50));
             this.data.setModeX(index,new Random().nextInt(-3,3));
@@ -30,7 +29,9 @@ class Page extends JPanel{
         addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
-                setBomb(e.getX(),e.getY());
+                if(e.getClickCount() == 2){
+                    setBomb(e.getX(),e.getY());
+                }
             }
         });
     }
@@ -54,6 +55,7 @@ class Page extends JPanel{
             jLabel.setIcon(image);
             jLabel.setBounds(x-image.getIconWidth()/2, y-image.getIconHeight()/2, image.getIconWidth(),image.getIconHeight());
             jLabel.setVisible(true);
+            this.data.clickBomb(x-image.getIconWidth()/2,y-image.getIconHeight()/2);
             add(jLabel);
             RunBomb runBomb = new RunBomb(jLabel);
             runBomb.start();

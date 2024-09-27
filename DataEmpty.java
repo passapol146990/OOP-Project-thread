@@ -1,10 +1,12 @@
 import java.awt.Rectangle;
 import java.util.Random;
+import java.util.ArrayList;
+import java.util.Iterator;
 class DataEmpty {
     private Seting seting;
     private boolean isSetUp=false;
     private int count;
-    private int EmptyLive;
+    private ArrayList<Integer> EmptyLive = new ArrayList<Integer>();
     private int [] position_x;
     private int [] position_y;
     private int [] modeX;
@@ -12,16 +14,18 @@ class DataEmpty {
     private int [] speed;
     private int [] hp;
     private boolean [] disCheck;
-    int hidbox = 50;
+    private int hidbox = 50;
     DataEmpty(Seting seting){
         this.seting = seting;
     }
     void setCountEmpty(int count){
         this.count = count;
-        this.EmptyLive = count;
+        for(int i=0; i<count; i++){
+            this.EmptyLive.add(i);
+        }
         this.position_x = new int[count];
         this.position_y = new int[count];
-        this.hp =  new int[count];//ดึงเลือดไปเช็ค
+        this.hp =  new int[count];
         this.modeX = new int[count];
         this.modeY = new int[count];
         this.speed = new int[count];
@@ -47,7 +51,7 @@ class DataEmpty {
             this.modeY[index] = getRandomInt(-5,-3);
             this.disCheck[index] = false; 
         }
-        for (int i = 0; i < this.EmptyLive; i++) {
+        for (int i : this.EmptyLive) {
             if (i != index) {
                 if(!this.disCheck[index]&&!this.disCheck[i]){
                     Rectangle thisAsteroid = new Rectangle(this.position_x[index], this.position_y[index], this.hidbox, this.hidbox);
@@ -68,6 +72,21 @@ class DataEmpty {
         this.position_x[index] += this.modeX[index];
         this.position_y[index] += this.modeY[index];
     }
+    void clickBomb(int x, int y){
+        try{
+            Iterator<Integer> iter = this.EmptyLive.iterator();
+            while (iter.hasNext()) {
+                int i = iter.next();
+                Rectangle thisAsteroid = new Rectangle(this.position_x[i], this.position_y[i], this.hidbox, this.hidbox);
+                Rectangle otherAsteroid = new Rectangle(x, y, this.hidbox, this.hidbox);
+                if (thisAsteroid.intersects(otherAsteroid)) {
+                    this.hp[i] = 0;
+                    iter.remove();
+                }
+            }
+        }catch(Exception e){}
+
+    }
     void setPositionX(int index,int position){this.position_x[index] = position;}
     void setPositionY(int index,int position){this.position_y[index] = position;}
     void setModeX(int index,int mode){this.modeX[index] = mode;}
@@ -77,7 +96,7 @@ class DataEmpty {
     void setHp(int index, int hp){this.hp[index] = hp;}
     Seting getSeting(){return this.seting;}
     boolean getIsSetUp(){return this.isSetUp;}
-    int getEmptyLive(){return this.EmptyLive;}
+    ArrayList<Integer> getEmptyLive(){return this.EmptyLive;}
     int getCountEmpty(){return this.count;}
     int getSpeedEmpty(int index){return this.speed[index];}
     int getPositionXEmpty(int index){return this.position_x[index];}
