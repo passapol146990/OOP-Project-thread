@@ -1,6 +1,6 @@
 import java.awt.Rectangle;
 import java.util.Random;
-import java.util.Timer;
+
 class DataEmpty {
     private Seting seting;
     private boolean isSetUp=false;
@@ -12,8 +12,7 @@ class DataEmpty {
     private int [] modeY;
     private int [] speed;
     private boolean [] disCheck;
-    private int[] collisionCounter;
-    int hidbox = 50;
+    int hidbox = 40;
     DataEmpty(Seting seting){
         this.seting = seting;
     }
@@ -26,7 +25,6 @@ class DataEmpty {
         this.modeY = new int[count];
         this.speed = new int[count];
         this.disCheck = new boolean[count];
-        this.collisionCounter = new int[count];
     }
     int getRandomInt(int min, int max){
         return new Random().nextInt(min, max);
