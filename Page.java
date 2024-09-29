@@ -1,10 +1,12 @@
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Toolkit;
+import java.awt.event.ComponentEvent;
+import java.awt.event.ComponentListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.Random;
-
+import java.awt.event.ComponentAdapter;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -26,13 +28,22 @@ class Page extends JPanel{
             RunThread runThread = new RunThread(this.data, index,this);
             runThread.start();
         }
-        addMouseListener(new MouseAdapter() {
+        addMouseListener(new MouseAdapter() { //เมื่อกดเมาส์ตำแหน่งเดิม2ทีจะสั่งให้ method ระเบิดทำงานโดยส่งค่า x กับ yเข้าไป
             @Override
             public void mouseClicked(MouseEvent e) {
                 if(e.getClickCount() == 2){
                     setBomb(e.getX(),e.getY());
                 }
+            
             }
+        });
+        addComponentListener(new ComponentAdapter() {
+
+            @Override
+            public void componentResized(ComponentEvent e) {
+                
+            }   
+            
         });
     }
     public void paint(Graphics g) {
@@ -52,7 +63,7 @@ class Page extends JPanel{
         try{
             ImageIcon image = new ImageIcon("./images/bomb.gif");
             JLabel jLabel = new JLabel();
-            jLabel.setIcon(image);
+            jLabel.setIcon(image);//ให้ตำแหน่ง x ลบด้วย width /2 เพราะเราจะทำให้มันตรงกับแกน x ของ เคอร์เซอร์เมาส์กับ y ก็เหมือนกันเพื่อทำให้ เคอร์เซอร์เมาส์มันตรงแกน y
             jLabel.setBounds(x-image.getIconWidth()/2, y-image.getIconHeight()/2, image.getIconWidth(),image.getIconHeight());
             jLabel.setVisible(true);
             this.data.clickBomb(x-image.getIconWidth()/2,y-image.getIconHeight()/2);
@@ -62,4 +73,5 @@ class Page extends JPanel{
         }catch (Exception e){}
         
     }
+    
 }
