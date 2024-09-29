@@ -9,6 +9,9 @@ import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
+import java.awt.event.ComponentAdapter;
+import java.awt.event.ComponentEvent;
+
 class Page extends JPanel{
     private DataEmpty data;
     private Seting seting;
@@ -33,6 +36,15 @@ class Page extends JPanel{
                 if(e.getClickCount() == 2){
                     setBomb(e.getX(),e.getY());
                 }
+            }
+        });
+        addComponentListener(new ComponentAdapter() {
+            @Override
+            public void componentResized(ComponentEvent e) {
+                int width = getWidth();
+                int height = getHeight();
+                seting.setWidth(width);
+                seting.setHeight(height);
             }
         });
     }

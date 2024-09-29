@@ -3,7 +3,9 @@ class Seting {
     Seting(int width, int height){
         this.width = width;
         this.height = height;
-    }    
+    }
+    void setWidth(int width) {this.width = width;}
+    void setHeight(int height) {this.height = height;}
     int getWidth() {return this.width;}
     int getHeight() {return this.height;}
 }

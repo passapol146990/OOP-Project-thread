@@ -1,16 +1,5 @@
 How to Run
-1.open cmd it path.
-2.use command "java Run.java {Number}"
-    - Example --> "java Run.java 10"
+1.open cmd
+2.join with path /OOP-PROJECT-THREAD
+3.Run Command --> java Run
 
-Run.java 
-- เอาไว้รวม components เข้าด้วยกันเพื่อทำงาน
-- ระบบ Thread อยู่ในไฟล์นี้ class ข้างล่าง
-
-App.java
-- เอาไว้เป็น frame หลัก ไม่จำเป็นไม่ต้องแตะต้อง
-
-
-Page.java
-- เป็น JPanel ที่มีการวาดอุกาบาด
-- กำหนดขอบและสร้างอุกาบาด
