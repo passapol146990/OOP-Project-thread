@@ -7,11 +7,11 @@ class RunThread extends Thread {
         this.index = index;
         this.page = page;
     }
-    public void run() {
+    public void run() {//คือเอามากำหนดความเร็วของแต่ละ index
         while (true) {
             this.data.runSystem(this.index);
             try{Thread.sleep(this.data.getSpeedEmpty(this.index));}catch(InterruptedException e){};
-            this.page.repaint();
+            this.page.repaint();//ให้มันวาดเรื่อยๆตามที่มีอยู่
         }
     }
 }

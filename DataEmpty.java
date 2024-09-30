@@ -34,7 +34,7 @@ class DataEmpty {
     int getRandomInt(int min, int max){
         return new Random().nextInt(min, max);
     }
-    void runSystem(int index){
+    void runSystem(int index){//จะให้ index มาเก็บค่าในการ random ตำแหน่งของอุกกาบาต
         if(this.position_x[index]<=0){
             this.modeX[index] = getRandomInt(1,2);
         }
@@ -47,14 +47,14 @@ class DataEmpty {
         if(this.position_y[index]>=this.seting.getHeight()){
             this.modeY[index] = getRandomInt(-2,-1);
         }
-        for (int i : this.EmptyLive) {
-            if (i != index) {
+        for (int i : this.EmptyLive) {//คือการวนลูปตามสมากชิกของ emptylive
+            if (i != index) {//สร้างตัวแปร2ตัว ตัว1 เอามาเก็บตามตำแหน่ง index  อีกตัวเอามาเก็บตาม emptylive หรือก็คือที่มีชีวิตจริงๆ
                 Rectangle thisAsteroid = new Rectangle(this.position_x[index], this.position_y[index], this.hidbox, this.hidbox);
                 Rectangle otherAsteroid = new Rectangle(this.position_x[i], this.position_y[i], this.hidbox, this.hidbox);
-                if (thisAsteroid.intersects(otherAsteroid)) {
-                    int dx = this.position_x[index] - this.position_x[i];
+                if (thisAsteroid.intersects(otherAsteroid)) {//ถ้าเกิดพื้นที่มันซ้อนกันให้เอา dx มาเก็บindex ที่ลบกัับตำแหน่ง emptyliveเพื่อที่จะได้ตำแหน่งจริงมาด้วย
+                    int dx = this.position_x[index] - this.position_x[i];//เพื่่อที่จะไม่ให้มันเกิดอาการชนติดหนึบ
                     int dy = this.position_y[index] - this.position_y[i];
-                    if (dx == 0) dx = 1; 
+                    if (dx == 0) dx = 1; //ถ้าเกิดตำแหน่งเดียวกันเราจะให้มัน set ค่าเพื่อวิ่งต่อ
                     if (dy == 0) dy = 1;
                     this.position_x[index] += 5 * (dx / Math.abs(dx)); // แยกออกตามทิศทาง X
                     this.position_y[index] += 5 * (dy / Math.abs(dy)); // แยกออกตามทิศทาง Y
@@ -71,15 +71,15 @@ class DataEmpty {
         this.position_x[index] += this.modeX[index];
         this.position_y[index] += this.modeY[index];
     }
-    void clickBomb(int x, int y){
+    void clickBomb(int x, int y){//iterator คือ inteface ที่เอาไว้เรียกใช้ method hasnext() เพื่อที่ตรวจสอบตามลำดับขั้น
         try{
             Iterator<Integer> iter = this.EmptyLive.iterator();
-            while (iter.hasNext()) {
+            while (iter.hasNext()) {//โดยเราจะให้ลูปนี้อยู่ตามตัวที่มันมีจริงๆ
                 int i = iter.next();
                 Rectangle thisAsteroid = new Rectangle(this.position_x[i], this.position_y[i], this.hidbox, this.hidbox);
-                Rectangle otherAsteroid = new Rectangle(x, y, this.hidbox, this.hidbox);
-                if (thisAsteroid.intersects(otherAsteroid)) {
-                    this.hp[i] = 0;
+                Rectangle otherAsteroid = new Rectangle(x, y, this.hidbox, this.hidbox);//rectangle คือพื้นที่ ที่เก็บอุกกาบาตต่างๆ
+                if (thisAsteroid.intersects(otherAsteroid)) {//โดยเราจะเอาอุกกาบาตนี้มาเปรียบเทียบกันว่าถ้าตำแหน่งมันเหมือนกันให้ hp =0 เพื่อที่จะลบให้มันหายไป
+                    this.hp[i] = 0;//ถ้าเกิดว่า ยังเหลือ hpแล้วเราลบไปมันจะทำให้ตัวก่อนหน้าที่ถูก remove หายแค่รูปแต่จริงๆมันยังสามารถชนกับตัวมีชีวิตได้
                     iter.remove();
                 }
             }

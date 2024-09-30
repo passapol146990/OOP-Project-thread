@@ -32,13 +32,13 @@ class Page extends JPanel{
         }
         addMouseListener(new MouseAdapter() {
             @Override
-            public void mouseClicked(MouseEvent e) {
+            public void mouseClicked(MouseEvent e) {//ถ้ากด 2ครั้งก็จะให้เรียก setbomb มาเพื่อที่จะเอาตำแหน่งไปเช็คเพื่อวาดรูประเบิด
                 if(e.getClickCount() == 2){
                     setBomb(e.getX(),e.getY());
                 }
             }
         });
-        addComponentListener(new ComponentAdapter() {
+        addComponentListener(new ComponentAdapter() {//มีเพื่อรับตำแหน่ง x,y ตามความเป็นจริงมันจะขยายขึ้นตาม frame
             @Override
             public void componentResized(ComponentEvent e) {
                 int width = getWidth();
@@ -50,7 +50,7 @@ class Page extends JPanel{
     }
     public void paint(Graphics g) {
         super.paint(g);
-        for(int i : this.data.getEmptyLive()){
+        for(int i : this.data.getEmptyLive()){//ให้จำนวนเปรียบเทียบกับ จำนวนอาเรย์ เพื่อที่จะนำมาวาดรูปอุกกาบาตต่างๆแบบสุ่ม
             if(this.data.getHp(i)!= 0){
                 int x = this.data.getPositionXEmpty(i);
                 int y = this.data.getPositionYEmpty(i);
@@ -61,7 +61,7 @@ class Page extends JPanel{
             // g.drawRect(x,y,50, 50);
         }
     }
-    void setBomb(int x, int y){
+    void setBomb(int x, int y){//รับค่า x,y มาเพื่อมาวนลูปละจากนั้นดึง method clickBombคือถ้าเกิดเรากด 2 ทีระเบิดเราไปโดนพื้นที่ของอุกกาบาตทำให้มันหายไป
         try{
             ImageIcon image = new ImageIcon("./images/bomb.gif");
             JLabel jLabel = new JLabel();

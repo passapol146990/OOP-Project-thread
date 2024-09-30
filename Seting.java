@@ -1,6 +1,6 @@
 class Seting {
     private int width,height;
-    Seting(int width, int height){
+    Seting(int width, int height){//กำหนด กว้างสูงโดยเฉพาะ
         this.width = width;
         this.height = height;
     }
