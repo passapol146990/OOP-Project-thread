@@ -48,7 +48,7 @@ class DataEmpty {
             this.modeY[index] = getRandomInt(-2,-1);
         }
         for (int i : this.EmptyLive) {//คือการวนลูปตามสมากชิกของ emptylive
-            if (i != index) {//สร้างตัวแปร2ตัว ตัว1 เอามาเก็บตามตำแหน่ง index  อีกตัวเอามาเก็บตาม emptylive หรือก็คือที่มีชีวิตจริงๆ
+            if (i != index) {
                 Rectangle thisAsteroid = new Rectangle(this.position_x[index], this.position_y[index], this.hidbox, this.hidbox);
                 Rectangle otherAsteroid = new Rectangle(this.position_x[i], this.position_y[i], this.hidbox, this.hidbox);
                 if (thisAsteroid.intersects(otherAsteroid)) {//ถ้าเกิดพื้นที่มันซ้อนกันให้เอา dx มาเก็บindex ที่ลบกัับตำแหน่ง emptyliveเพื่อที่จะได้ตำแหน่งจริงมาด้วย
@@ -79,7 +79,7 @@ class DataEmpty {
                 Rectangle thisAsteroid = new Rectangle(this.position_x[i], this.position_y[i], this.hidbox, this.hidbox);
                 Rectangle otherAsteroid = new Rectangle(x, y, this.hidbox, this.hidbox);//rectangle คือพื้นที่ ที่เก็บอุกกาบาตต่างๆ
                 if (thisAsteroid.intersects(otherAsteroid)) {//โดยเราจะเอาอุกกาบาตนี้มาเปรียบเทียบกันว่าถ้าตำแหน่งมันเหมือนกันให้ hp =0 เพื่อที่จะลบให้มันหายไป
-                    this.hp[i] = 0;//ถ้าเกิดว่า ยังเหลือ hpแล้วเราลบไปมันจะทำให้ตัวก่อนหน้าที่ถูก remove หายแค่รูปแต่จริงๆมันยังสามารถชนกับตัวมีชีวิตได้
+                    this.hp[i] = 0;
                     iter.remove();
                 }
             }
