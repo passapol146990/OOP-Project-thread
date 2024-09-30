@@ -50,15 +50,12 @@ class Page extends JPanel{
     }
     public void paint(Graphics g) {
         super.paint(g);
-        for(int i : this.data.getEmptyLive()){//ให้จำนวนเปรียบเทียบกับ จำนวนอาเรย์ เพื่อที่จะนำมาวาดรูปอุกกาบาตต่างๆแบบสุ่ม
+        for(int i : this.data.getEmptyLive()){//ให้จำนวนเปรียบเทียบกับ จำนวนอาเรย์ เพื่อที่จะนำมาวาดรูปอุกกาบาตต่างๆ
             if(this.data.getHp(i)!= 0){
                 int x = this.data.getPositionXEmpty(i);
                 int y = this.data.getPositionYEmpty(i);
                 g.drawImage(Toolkit.getDefaultToolkit().getImage("./images/"+this.data.getImageNumber(i)+".png"), x, y,50,50,this);
             }
-            // g.setColor(new Color(0,255,0));
-            // g.drawString("X:"+x+"Y :"+y,x, y-5);
-            // g.drawRect(x,y,50, 50);
         }
     }
     void setBomb(int x, int y){//รับค่า x,y มาเพื่อมาวนลูปละจากนั้นดึง method clickBombคือถ้าเกิดเรากด 2 ทีระเบิดเราไปโดนพื้นที่ของอุกกาบาตทำให้มันหายไป
