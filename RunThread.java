@@ -8,7 +8,7 @@ class RunThread extends Thread {
         this.page = page;
     }
     public void run() {//คือเอามากำหนดความเร็วของแต่ละ index
-        while (true) {
+        while (this.data.getHp(this.index)>0) {
             this.data.runSystem(this.index);
             try{Thread.sleep(this.data.getSpeedEmpty(this.index));}catch(InterruptedException e){};
             this.page.repaint();//ให้มันวาดเรื่อยๆตามที่มีอยู่
